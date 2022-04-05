@@ -1,7 +1,6 @@
-package xyz.fusheng.project.tools.office.utils;
+package xyz.fusheng.project.common.utils;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
-
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.hwpf.extractor.WordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;

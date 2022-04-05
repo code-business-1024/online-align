@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>xyz.fusheng</groupId>
-    <artifactId>springboot-project-cli</artifactId>
+    <artifactId>online-align</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springboot-project-cli</name>
+    <name>online-align</name>
     <description>Spring Boot 脚手架工程</description>
     <properties>
         <java.version>1.8</java.version>
@@ -28,7 +28,19 @@
         <jackson.version>2.13.2</jackson.version>
         <jjwt.version>0.9.0</jjwt.version>
 
+        <apache-poi.version>5.2.2</apache-poi.version>
+
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-api</artifactId>
+                <version>2.17.2</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -147,6 +159,28 @@
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
             <version>${jjwt.version}</version>
+        </dependency>
+
+        <!-- Java程序对Microsoft Office格式文件读和写 -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>${apache-poi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>${apache-poi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-scratchpad</artifactId>
+            <version>${apache-poi.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.17.2</version>
         </dependency>
 
     </dependencies>

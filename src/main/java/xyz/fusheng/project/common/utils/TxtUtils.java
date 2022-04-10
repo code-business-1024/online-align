@@ -1,18 +1,15 @@
 package xyz.fusheng.project.common.utils;
 
-import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import org.apache.commons.collections4.map.LinkedMap;
-import org.apache.poi.hwpf.HWPFDocument;
-import org.apache.poi.hwpf.extractor.WordExtractor;
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 import xyz.fusheng.project.common.enums.UnityLangEnum;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.BreakIterator;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,55 +18,35 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * @FileName: OfficeToolUtils
+ * @FileName: TextUtils
  * @Author: code-fusheng
- * @Date: 2022/4/5 11:12
+ * @Date: 2022/4/9 13:54
  * @Version: 1.0
- * @Description: Office 工具类
+ * @Description:
  */
 
-public class OfficeUtils {
+public class TxtUtils {
 
-    private static final Logger logger = LoggerFactory.getLogger(OfficeUtils.class);
+    private static final Logger logger = LoggerFactory.getLogger(TxtUtils.class);
 
-    private static final String DOCX_SUFFIX = ".docx";
-    private static final String DOC_SUFFIX = ".doc";
+    private static final String TXT_SUFFIX = ".txt";
 
-    /**
-     * doc 文件格式化成段落
-     *
-     * @return
-     * @throws IOException
-     * @throws InvalidFormatException
-     */
-    public static Map<Integer, String> docxParser2Sentences(MultipartFile file, UnityLangEnum language) {
+    public static Map<Integer, String> txtParser2Sentences(MultipartFile file, UnityLangEnum language) {
         Map<Integer, String> sentencesMap = new LinkedMap<>();
         AtomicInteger sentenceNum = new AtomicInteger(0);
         try {
-            InputStream fis = file.getInputStream();
-            String fileName = file.getOriginalFilename();
             AtomicInteger paragraphNum = new AtomicInteger(0);
             Map<Integer, String> paragraphsMap = new LinkedMap<>();
-            if (fileName.endsWith(DOCX_SUFFIX)) {
-                XWPFDocument docx = new XWPFDocument(fis);
-                List<XWPFParagraph> paragraphs = docx.getParagraphs();
-                for (XWPFParagraph paragraph : paragraphs) {
-                    if (StringUtils.isNotBlank(paragraph.getText())) {
-                        paragraphsMap.put(paragraphNum.incrementAndGet(), paragraph.getText());
-                    }
+            InputStream fis = file.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+            String lineText = null;
+            while ((lineText = br.readLine()) != null) {
+                if (StringUtils.isNotBlank(lineText)) {
+                    paragraphsMap.put(paragraphNum.incrementAndGet(), lineText);
                 }
-                fis.close();
-            } else if (fileName.endsWith(DOC_SUFFIX)) {
-                HWPFDocument doc = new HWPFDocument(fis);
-                WordExtractor we = new WordExtractor(doc);
-                String[] paragraphs = we.getParagraphText();
-                for (String paragraph : paragraphs) {
-                    if (StringUtils.isNotBlank(paragraph)) {
-                        paragraphsMap.put(paragraphNum.incrementAndGet(), paragraph);
-                    }
-                }
-                fis.close();
             }
+            br.close();
+            fis.close();
             if (!paragraphsMap.isEmpty()) {
                 for (Map.Entry<Integer, String> entry : paragraphsMap.entrySet()) {
                     List<String> sentences = paragraph2Sentences(entry.getValue(), language);

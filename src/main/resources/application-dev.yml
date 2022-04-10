@@ -10,3 +10,9 @@ jwt:
   expiration: 86400
   # 配置不需要认证的接口
   antMatchers: /index/**,/login/**,/favicon.ico
+aliyun:
+  oss:
+    bucketName: code-business
+    endpoint: oss-cn-hangzhou.aliyuncs.com
+    accessKeyId: LTAI4GBfAZSSf7c8JhEPbK3r
+    accessKeySecret: VpMu3ShYf30IpaMNlhEDe8dzBclVGT

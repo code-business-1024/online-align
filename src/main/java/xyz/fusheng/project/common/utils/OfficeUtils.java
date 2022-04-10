@@ -37,7 +37,6 @@ public class OfficeUtils {
 
     /**
      * doc 文件格式化成段落
-     *
      * @return
      * @throws IOException
      * @throws InvalidFormatException

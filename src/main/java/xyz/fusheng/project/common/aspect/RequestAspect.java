@@ -46,7 +46,7 @@ public class RequestAspect {
      */
     @Before("basePointCut()")
     public void doBefore(JoinPoint joinPoint) throws Exception {
-        logger.info("[AOP切面日志-前置通知]");
+        // logger.info("[AOP切面日志-前置通知]");
     }
 
     /**
@@ -59,7 +59,7 @@ public class RequestAspect {
      */
     @Around("basePointCut()")
     public Object doAround(ProceedingJoinPoint pjp) throws Throwable {
-        logger.info("[AOP切面日志-环绕通知]");
+        // logger.info("[AOP切面日志-环绕通知]");
         // pjp.proceed() 执行目标方法 可以理解为对业务方法的模拟
         Object ob = pjp.proceed();
         return ob;
@@ -72,7 +72,7 @@ public class RequestAspect {
      */
     @AfterReturning(returning = "ret", pointcut = "basePointCut()")
     public void doAfterReturning(Object ret) {
-        logger.info("[AOP切面日志-后置通知]");
+        // logger.info("[AOP切面日志-后置通知]");
     }
 
     /**
@@ -81,7 +81,7 @@ public class RequestAspect {
      */
     @AfterThrowing(pointcut = "basePointCut()", throwing = "e")
     public void doAfterThrowing(JoinPoint joinPoint, Throwable e) {
-        logger.info("[AOP切面日志-异常通知]");
+        // logger.info("[AOP切面日志-异常通知]");
     }
 
 }

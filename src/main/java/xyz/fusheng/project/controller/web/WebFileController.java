@@ -1,14 +1,14 @@
 package xyz.fusheng.project.controller.web;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import xyz.fusheng.project.common.enums.UnityLangEnum;
 import xyz.fusheng.project.core.service.ISentenceService;
 import xyz.fusheng.project.model.base.BaseResult;
+import xyz.fusheng.project.model.request.TmxDataVo;
 
 import javax.annotation.Resource;
 import java.util.Map;
@@ -34,7 +34,21 @@ public class WebFileController {
                                       @RequestParam String language) {
         UnityLangEnum unityLangEnum = UnityLangEnum.matchLangStr(language);
         Map<Integer, String> sentencesMap = iSentenceService.uploadFileAndParserSentences(file, unityLangEnum);
-        return BaseResult.success(sentencesMap);
+        JSONArray objects = new JSONArray();
+        sentencesMap.entrySet().forEach(item -> {
+            objects.add(new JSONObject() {{
+                put("key", item.getKey());
+                put("value", item.getValue());
+            }});
+        });
+        return BaseResult.success(objects);
+    }
+
+    @ApiOperation("导出Tmx文件")
+    @PostMapping("/exportTmx")
+    public BaseResult<String> exportTmx(@RequestBody TmxDataVo tmxDataVo) {
+        String fileUrl = iSentenceService.exportTmx(tmxDataVo);
+        return BaseResult.success("");
     }
 
 }

@@ -27,6 +27,8 @@
         <knife4j.version>2.0.1</knife4j.version>
         <jackson.version>2.13.2</jackson.version>
         <jjwt.version>0.9.0</jjwt.version>
+        <!-- 业务需求依赖 -->
+        <dom4j.version>2.1.3</dom4j.version>
 
         <apache-poi.version>5.2.2</apache-poi.version>
 
@@ -203,6 +205,15 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>2.17.2</version>
+        </dependency>
+
+        <!-- 业务需求依赖 -->
+        <!-- dom4j -->
+        <!-- https://mvnrepository.com/artifact/org.dom4j/dom4j -->
+        <dependency>
+            <groupId>org.dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>${dom4j.version}</version>
         </dependency>
 
     </dependencies>

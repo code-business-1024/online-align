@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tmx>
+  <header/>
+  <body>
+    <tu tuid="0">
+      <tuv xml:lang="en-US">
+        <seg>哈哈哈哈哈1</seg>
+      </tuv>
+      <tuv xml:lang="zh-CN">
+        <seg>hahahahaha1</seg>
+      </tuv>
+    </tu>
+    <tu tuid="1">
+      <tuv xml:lang="en-US">
+        <seg>哈哈哈哈哈2</seg>
+      </tuv>
+      <tuv xml:lang="zh-CN">
+        <seg>hahahahaha2</seg>
+      </tuv>
+    </tu>
+  </body>
+</tmx>

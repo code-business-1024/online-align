@@ -7,6 +7,10 @@ import com.alibaba.fastjson.JSONObject;
 import java.lang.reflect.Field;
 import java.util.List;
 
+/**
+ * @author code-fusheng
+ */
+
 public class DictUtil {
 
     /**

@@ -13,4 +13,10 @@ public interface GlobalConstants {
     Integer YES = 1;
     Integer NO = 0;
 
+    // 文档类型
+    String SOURCE = "src";
+
+    String TARGET = "tgt";
+
+
 }

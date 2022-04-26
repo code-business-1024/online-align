@@ -9,6 +9,7 @@ import xyz.fusheng.project.common.enums.UnityLangEnum;
 import xyz.fusheng.project.common.utils.OfficeUtils;
 import xyz.fusheng.project.common.utils.TxtUtils;
 import xyz.fusheng.project.core.service.ISentenceService;
+import xyz.fusheng.project.model.request.TmxDataVo;
 import xyz.fusheng.project.tools.oss.AliyunOssUtils;
 
 import javax.annotation.Resource;
@@ -43,5 +44,14 @@ public class SentenceServiceImpl implements ISentenceService {
             sentencesMap = TxtUtils.txtParser2Sentences(file, language);
         }
         return sentencesMap;
+    }
+
+    @Override
+    public String exportTmx(TmxDataVo tmxDataVo) {
+
+        // 通过 tmxDataVo 中的参数构建 tmx document 节点树
+
+
+        return null;
     }
 }

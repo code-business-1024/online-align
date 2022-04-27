@@ -11,7 +11,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -48,6 +50,21 @@ public class AliyunOssUtils {
                 ossClient.createBucket(createBucketRequest);
             }
         } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            ossClient.shutdown();
+        }
+        String url = "https://" + aliyunOssConfig.getBucketName() + "." + aliyunOssConfig.getEndpoint() + "/" + fileName;
+        logger.info("文件上传返回结果预览:{}", url);
+        return url;
+    }
+
+    public String uploadFile(InputStream inputStream, String name, String suffix) {
+        OSS ossClient = new OSSClientBuilder().build(aliyunOssConfig.getEndpoint(), aliyunOssConfig.getAccessKeyId(), aliyunOssConfig.getAccessKeySecret());
+        String fileName = dateFormat.get().format(new Date()) + File.separator + name + "." + suffix;
+        try {
+            ossClient.putObject(aliyunOssConfig.getBucketName(), fileName, inputStream);
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             ossClient.shutdown();

@@ -1,7 +1,7 @@
 
 package xyz.fusheng.project.common.utils;
 
-import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.text.StringEscapeUtils;
 import org.springframework.util.Assert;
 
 import javax.servlet.http.HttpServletRequest;
@@ -421,6 +421,5 @@ public final class StringUtils extends org.apache.commons.lang3.StringUtils {
         }
         return temp;
     }
-
 
 }

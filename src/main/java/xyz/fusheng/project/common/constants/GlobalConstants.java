@@ -18,5 +18,4 @@ public interface GlobalConstants {
 
     String TARGET = "tgt";
 
-
 }

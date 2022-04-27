@@ -48,7 +48,7 @@ public class WebFileController {
     @PostMapping("/exportTmx")
     public BaseResult<String> exportTmx(@RequestBody TmxDataVo tmxDataVo) {
         String fileUrl = iSentenceService.exportTmx(tmxDataVo);
-        return BaseResult.success("");
+        return BaseResult.success(fileUrl);
     }
 
 }

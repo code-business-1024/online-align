@@ -10,7 +10,7 @@
     </parent>
     <groupId>xyz.fusheng</groupId>
     <artifactId>online-align</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>online-align</name>
     <description>Spring Boot 脚手架工程</description>
     <properties>
